@@ -1,0 +1,12 @@
+def print_menu():
+    print("\n=== Bankovní aplikace ===")
+    print("AC - Vytvořit účet")
+    print("AD <číslo_účtu>/<IP> <částka> - Vložit peníze")
+    print("AW <číslo_účtu>/<IP> <částka> - Vybrat peníze")
+    print("AB <číslo_účtu>/<IP> - Zkontrolovat zůstatek")
+    print("AR <číslo_účtu>/<IP> - Smazat účet")
+    print("BA - Celková částka v bance")
+    print("BN - Počet klientů")
+    print("BC - Získat kód banky (IP adresa)")
+    print("EXIT - Ukončit aplikaci")
+    print("=========================")
