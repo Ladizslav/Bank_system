@@ -30,13 +30,13 @@ def get_connection():
 def create_tables_and_views(connection):
     cursor = connection.cursor()
     cursor.execute("""
-    CREATE TABLE IF NOT EXISTS accounts (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        account_number INT NOT NULL UNIQUE,
-        balance DECIMAL(15, 2) NOT NULL DEFAULT 0,
-        ip VARCHAR(15) NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    create table if not exists accounts (
+        id int auto_increment primary key,
+        account_number int not null unique,
+        balance decimal(15, 2) not null default 0,
+        ip varchar(15) not null,
+        created_at timestamp default current_timestamp,
+        updated_at timestamp default current_timestamp on update current_timestamp
     );
     """)
     connection.commit()
@@ -46,10 +46,10 @@ def create_account(ip):
     connection = get_connection()
     if connection:
         cursor = connection.cursor()
-        cursor.execute("SELECT MAX(account_number) FROM accounts;")
+        cursor.execute("select max(account_number) from accounts;")
         max_account_number = cursor.fetchone()[0]
         account_number = max_account_number + 1 if max_account_number else 10000
-        cursor.execute("INSERT INTO accounts (account_number, ip) VALUES (%s, %s);", (account_number, ip))
+        cursor.execute("insert into accounts (account_number, ip) values (%s, %s);", (account_number, ip))
         connection.commit()
         connection.close()
         return account_number
@@ -59,7 +59,7 @@ def deposit(account_number, amount):
     connection = get_connection()
     if connection:
         cursor = connection.cursor()
-        cursor.execute("UPDATE accounts SET balance = balance + %s WHERE account_number = %s;", (amount, account_number))
+        cursor.execute("update accounts set balance = balance + %s where account_number = %s;", (amount, account_number))
         connection.commit()
         connection.close()
         return True
@@ -69,10 +69,10 @@ def withdraw(account_number, amount):
     connection = get_connection()
     if connection:
         cursor = connection.cursor()
-        cursor.execute("SELECT balance FROM accounts WHERE account_number = %s;", (account_number,))
+        cursor.execute("select balance from accounts where account_number = %s;", (account_number,))
         balance = cursor.fetchone()[0]
         if balance >= amount:
-            cursor.execute("UPDATE accounts SET balance = balance - %s WHERE account_number = %s;", (amount, account_number))
+            cursor.execute("update accounts set balance = balance - %s where account_number = %s;", (amount, account_number))
             connection.commit()
             connection.close()
             return True
@@ -83,7 +83,7 @@ def get_balance(account_number):
     connection = get_connection()
     if connection:
         cursor = connection.cursor()
-        cursor.execute("SELECT balance FROM accounts WHERE account_number = %s;", (account_number,))
+        cursor.execute("select balance from accounts where account_number = %s;", (account_number,))
         balance = cursor.fetchone()
         connection.close()
         return balance[0] if balance else None
@@ -93,10 +93,10 @@ def delete_account(account_number):
     connection = get_connection()
     if connection:
         cursor = connection.cursor()
-        cursor.execute("SELECT balance FROM accounts WHERE account_number = %s;", (account_number,))
+        cursor.execute("select balance from accounts where account_number = %s;", (account_number,))
         balance = cursor.fetchone()[0]
         if balance == 0:
-            cursor.execute("DELETE FROM accounts WHERE account_number = %s;", (account_number,))
+            cursor.execute("delete from accounts where account_number = %s;", (account_number,))
             connection.commit()
             connection.close()
             return True
@@ -107,7 +107,7 @@ def get_total_amount():
     connection = get_connection()
     if connection:
         cursor = connection.cursor()
-        cursor.execute("SELECT SUM(balance) FROM accounts;")
+        cursor.execute("select sum(balance) from accounts;")
         total_amount = cursor.fetchone()[0]
         connection.close()
         return total_amount or 0
@@ -117,7 +117,7 @@ def get_client_count():
     connection = get_connection()
     if connection:
         cursor = connection.cursor()
-        cursor.execute("SELECT COUNT(*) FROM accounts;")
+        cursor.execute("select count(*) from accounts;")
         client_count = cursor.fetchone()[0]
         connection.close()
         return client_count
