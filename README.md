@@ -1,5 +1,5 @@
 # Bank_system
-- Jméno projektu: Pokémoní databáze
+- Jméno projektu: Bankovní systém
 - Autor: Ladislav Dobiáš
 - Datum dokončení: 7.2.2025
 - Kontaktní údaje: dobias@spsejecna.cz
