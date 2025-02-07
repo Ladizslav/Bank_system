@@ -1,0 +1,55 @@
+1. Jestli vše funguje
+AC
+AC 10010/127.0.0.1
+AD 10010/127.0.0.2 5000
+AD
+AW 10010/127.0.0.1 500
+AW
+AB 10010/127.0.0.1
+AB 4500.00
+AR 10010/127.0.0.1
+ER Nelze smazat bankovní účet na kterém jsou finance.
+AW 10010/127.0.0.1 4500
+AW
+AR 10010/127.0.0.1
+AR
+
+BA
+BA 20000.00
+BN
+BN 10
+BC
+BC 127.0.0.1
+
+EXIT
+
+2. Kontrola errorů
+AC
+AC 10012/127.0.0.1
+AD 10013/127.0.0.1 5000
+ER Chyba: Účet neexistuje nebo nepatří k této bance.
+AD 10012/127.0.0.1 -500
+ER Chyba: Nemůžeš dát negativní hodnotu
+AW 10013/127.0.0.1 5000
+ER Chyba: Účet neexistuje nebo nepatří k této bance.
+AW 10012/127.0.0.1 5000
+ER Chyba: Není dostatek finančních prostředků.
+AW 10012/127.0.0.1 -500
+ER Chyba: Nemůžeš dát negativní hodnotu
+AB 10012/127.0.0.1
+AB 0.00
+AB 10013/127.0.0.1
+ER Chyba: Účet neexistuje nebo nepatří k této bance.
+AB
+ER Chyba: Neplatný formát příkazu.
+AD
+ER Chyba: Neplatný formát příkazu.
+AW
+ER Chyba: Neplatný formát příkazu.
+AR
+ER Chyba: Neplatný formát příkazu.
+AR 10013/127.0.0.1
+ER Chyba: Účet neexistuje nebo nepatří k této bance.
+AR 10012/127.0.0.1
+AR
+

@@ -1,0 +1,58 @@
+## Jak aplikace funguje
+        
+1. Po spuštění aplikace se uživateli zobrazí menu povolených příkazů. 
+V1
+2. Spusťte Putty a zadejte následující:
+
+    Host Name (or IP address): 127.0.0.1
+    Port: 65525
+    Connection type: Raw
+    
+    Navíc můžete:
+    Close window on exit: Never
+
+3. Poté můžete psát commandy s menu v Putty
+V2
+2. Můžete psát rovnou v konzoli, pokud nechcete použít Putty
+
+---
+
+Použité soubory z projektů
+
+Implementace databáze
+https://github.com/Ladizslav/RDBMS-Lambda
+db/db_connector.py
+db/table_initiator.py
+config.json
+README.md
+
+Mohl bys mi to poupravit aby to bylo hezké v README, napiš to do formátu .txt
+děkuji
+
+# Jak aplikace funguje
+
+Po spuštění aplikace se zobrazí menu s dostupnými příkazy, které můžete použít.
+
+## Použití
+
+### Možnost 1: Použití Putty
+
+1. Spusťte **Putty** a zadejte následující údaje:
+   - **Host Name (or IP address):** `127.0.0.1`
+   - **Port:** `65525`
+   - **Connection type:** `Raw`
+
+2. Volitelně můžete nastavit:
+   - **Close window on exit:** `Never`
+
+3. Po připojení můžete zadávat příkazy podle zobrazeného menu.
+
+### Možnost 2: Přímé použití konzole
+
+Pokud nechcete používat Putty, můžete příkazy zadávat přímo v konzoli.
+
+## Použité soubory z projektu
+
+Aplikace využívá následující soubory z projektu **[RDBMS-Lambda](https://github.com/Ladizslav/RDBMS-Lambda)**:
+
+db/db_connector.py db/table_initiator.py config.json README.md

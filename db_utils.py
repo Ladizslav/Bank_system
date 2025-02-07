@@ -18,10 +18,10 @@ def get_connection():
             cursor = connection.cursor()
             cursor.execute(f"create database if not exists {config['database']};")
             cursor.execute(f"use {config['database']};")
-            print("Connected successfully")
+
             return connection
         else:
-            print("Failed to connect to database")
+            print("Chyba k připojení na server")
             return None
     except Error as e:
         print(f"Error: {e}")
@@ -122,3 +122,15 @@ def get_client_count():
         connection.close()
         return client_count
     return 0
+
+def is_valid_user(account_number, ip):
+    connection = get_connection()
+    if connection:
+        cursor = connection.cursor()
+        cursor.execute("""
+            select count(*) from accounts where account_number = %s and ip = %s;
+        """, (account_number, ip))
+        result = cursor.fetchone()[0]
+        connection.close()
+        return result > 0
+    return False
